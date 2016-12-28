@@ -2,6 +2,8 @@ var express = require('express')
 var app = express()
 var timestampApp = require("./timestamp.js")
 
+app.set('view engine', 'pug')
+
 app.get('/', function (req, res) {
   res.send('Hello app!')
 })

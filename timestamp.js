@@ -1,12 +1,12 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello timestamp ms!')
-})
 
 MONTHS = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',  'November', 'December']
 
+app.get('/', function (req, res) {
+  res.render('timestamp', { req:req })
+})
 
 app.get('/:date', function(req, res) {
 	
