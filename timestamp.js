@@ -5,7 +5,7 @@ var app = express()
 MONTHS = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',  'November', 'December']
 
 app.get('/', function (req, res) {
-  res.render('timestamp', { req:req })
+  res.render(process.cwd()+'/view.pug', { req:req })
 })
 
 app.get('/:date', function(req, res) {

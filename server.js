@@ -3,12 +3,43 @@ var app = express()
 var timestampApp = require("./timestamp.js")
 
 app.set('view engine', 'pug')
+app.set('views', process.cwd())
+
+MONTHS = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',  'November', 'December']
 
 app.get('/', function (req, res) {
-  res.send('Hello app!')
+  res.render(process.cwd()+'/view.pug', { req:req })
 })
 
-app.use('/timestamp/', timestampApp);
+app.get('/:date', function(req, res) {
+	
+	//date object to make from params.date
+	var d;	
+	
+	//If it is a unix timestamp
+	if(/^\d+$/.test(req.params.date )){
+		date = parseInt(req.params.date);
+		d = new Date(date);
+	//If it's something else
+	} else {
+		d = new Date(req.params.date);
+	}
+	
+	var reply = {};
+	
+	//If the date is invalid
+	if(isNaN( d.getTime()) ){
+		reply.unix = null
+		reply.natural = null		
+	//The date is valid build a good response object.
+	} else {
+		reply.unix = d.getTime();
+		reply.natural = MONTHS[d.getMonth()] + " " + d.getDay() + ", " + d.getFullYear();		
+	}	
+	
+	res.json(reply);
+	
+});
 
 
 var port;
