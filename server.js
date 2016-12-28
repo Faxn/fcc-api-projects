@@ -1,6 +1,5 @@
 var express = require('express')
 var app = express()
-var timestampApp = require("./timestamp.js")
 
 app.set('view engine', 'pug')
 app.set('views', process.cwd())
