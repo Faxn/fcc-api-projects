@@ -1,0 +1,40 @@
+
+
+script.
+    window.addEventListener("load", function(event) {
+        elements = document.getElementsByClassName("url");
+        for(element of elements){
+            element.innerText = document.URL
+        }
+    })
+
+style.
+    .code {
+        background-color: lightgrey;
+        color: darkred;
+        font-family: monospace;
+    }
+
+h1 Timestamp Microservice
+
+p Microservice that parses the provided date from unix time or natural language and returns a JSON object with the date in unix time and as a natural date.
+
+p
+    |Intended to be a clone of 
+    a(href='https://timestamp-ms.herokuapp.com/') https://timestamp-ms.herokuapp.com/
+
+h2 Example Usage
+
+p.code
+    span.url
+    |December%2015,%202015
+p.code
+    span.url
+    |1450137600
+
+h2 Example Output
+
+p.code
+    |{"unix":1450155600000,"natural":"December 2, 2015"}
+p.code
+    |{"unix":1450137600,"natural":"January 6, 1970"}
